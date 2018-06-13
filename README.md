@@ -30,7 +30,7 @@ ngrok http 5000
 
 4. After the integration is created save the **Client ID** and **Client Secret** somewhere secure for later use in the Flask app configuration
 	
-The **Client Secret** will only be shown once so please copy and keep it safe! You can always regenerate it, but you will not 	see this one again.
+	The **Client Secret** will only be shown once so please copy and keep it safe! You can always regenerate it, but you will not 	see this one again.
 
 5. Clone the repository and setup the application environment
 	From a bash shell:
@@ -65,6 +65,6 @@ python3 oauth.py
 
 1. Open a browser and go to your active ngrok https URI
 	
-ex. https://fh47sk3u.ngrok.io
+	ex. https://fh47sk3u.ngrok.io
 
-You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
+	You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
