@@ -62,8 +62,9 @@ python3 oauth.py
 ```
 
 ## How to test
+
 1. Open a browser and go to your active ngrok https URI
 	
 ex. https://fh47sk3u.ngrok.io
-	
+
 You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
