@@ -17,13 +17,13 @@ ngrok http 5000
 	* Give your integration a description
 	* Enter the Redirect_URI
 	
-	Use the ngrok https forwarding uri and append /callback to the end
+		Use the ngrok https forwarding uri and append /callback to the end
 
-	ex. https://fh47sk3u.ngrok.io/callback
+		ex. https://fh47sk3u.ngrok.io/callback
 
-	**Note:**
-	_You will need this Redirect_URI for the application setup later._
-	_If you close ngrok and start it again the random https URI will change and you will have modify it in the integration._
+		**Note:**
+		_You will need this Redirect_URI for the application setup later._
+		_If you close ngrok and start it again the random https URI will change and you will have modify it in the integration._
 
 	* Select the **spark:all** scope
 	* Click the "Create Integration" button
@@ -63,7 +63,7 @@ python3 oauth.py
 
 ## How to test
 1. Open a browser and go to your active ngrok https URI
-
-ex. https://fh47sk3u.ngrok.io
-
-You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
+	
+	ex. https://fh47sk3u.ngrok.io
+	
+	You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
