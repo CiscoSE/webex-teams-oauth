@@ -7,7 +7,8 @@ A simple python Flask application that uses the Webex Teams OAuth 2 authenticati
 2. Open a new console window and start ngrok to expose port 5000 of your local machine to the internet
 
 ```
-ngrok http 5000
+cd <directory where ngrok executable is located>
+./ngrok http 5000
 ```
 
 3. Configure a new integration from the [Cisco Webex for Developers](https://developer.webex.com/add-integration.html) integration creation page
