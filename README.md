@@ -11,11 +11,11 @@ ngrok http 5000
 ```
 
 3. Configure a new integration from the [Cisco Webex for Developers](https://developer.webex.com/add-integration.html) integration creation page
-	* Enter the name of your integration
-	* Enter a contact email
-	* Pick an icon
-	* Give your integration a description
-	* Enter the Redirect_URI
+* Enter the name of your integration
+* Enter a contact email
+* Pick an icon
+* Give your integration a description
+* Enter the Redirect_URI
 	
 	Use the ngrok https forwarding uri and append /callback to the end
 
@@ -25,8 +25,8 @@ ngrok http 5000
 	_You will need this Redirect_URI for the application setup later._
 	_If you close ngrok and start it again the random https URI will change and you will have modify it in the integration._
 
-	* Select the **spark:all** scope
-	* Click the "Create Integration" button
+* Select the **spark:all** scope
+* Click the "Create Integration" button
 
 4. After the integration is created save the **Client ID** and **Client Secret** somewhere secure for later use in the Flask app configuration
 	
@@ -64,6 +64,6 @@ python3 oauth.py
 ## How to test
 1. Open a browser and go to your active ngrok https URI
 	
-		ex. https://fh47sk3u.ngrok.io
+ex. https://fh47sk3u.ngrok.io
 	
-		You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
+You should be redirected to the Webex Teams authentication page and upon successful login a list of the last 10 active spaces should be displayed
