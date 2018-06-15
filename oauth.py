@@ -19,7 +19,7 @@ or implied.
 """
 
 from requests_oauthlib import OAuth2Session
-from flask import Flask, request, redirect, session, url_for
+from flask import Flask, request, redirect, session, url_for, render_template
 from flask_sslify import SSLify
 from flask.json import jsonify
 from ciscosparkapi import CiscoSparkAPI
@@ -28,6 +28,7 @@ import json
 import os
 
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+os.environ['DEBUG'] = '1'
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -71,10 +72,19 @@ def callback():
 
 @app.route("/rooms", methods=["GET"])
 def rooms():
+    teams_token = session['oauth_token']
+    api = CiscoSparkAPI(access_token=teams_token['access_token'])
+    rooms = api.rooms.list(sortBy='lastactivity', max=10)
+
+    return render_template('rooms.html', rooms=rooms)
+
+
+#@app.route("/rooms", methods=["GET"])
+#def rooms():
     """Fetching a protected resource using an OAuth 2 token.
     """
-    rooms = OAuth2Session(CLIENT_ID, token=session['oauth_token'])
-    return jsonify(rooms.get('https://api.ciscospark.com/v1/rooms?sortBy=lastactivity').json())
+#    rooms = OAuth2Session(CLIENT_ID, token=session['oauth_token'])
+#    return jsonify(rooms.get('https://api.ciscospark.com/v1/rooms?sortBy=lastactivity').json())
 
 
 @app.route("/me", methods=["GET"])
