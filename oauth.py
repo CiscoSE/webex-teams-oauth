@@ -74,7 +74,7 @@ def callback():
 def rooms():
     teams_token = session['oauth_token']
     api = CiscoSparkAPI(access_token=teams_token['access_token'])
-    rooms = api.rooms.list(sortBy='lastactivity', max=10)
+    rooms = api.rooms.list(sortBy='lastactivity')
     
 
     return render_template('rooms.html', rooms=rooms)
