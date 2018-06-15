@@ -75,6 +75,7 @@ def rooms():
     teams_token = session['oauth_token']
     api = CiscoSparkAPI(access_token=teams_token['access_token'])
     rooms = api.rooms.list(sortBy='lastactivity', max=10)
+    
 
     return render_template('rooms.html', rooms=rooms)
 

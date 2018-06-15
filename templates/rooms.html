@@ -15,7 +15,7 @@
   <body>
     <div class="container">
       <ul>
-        {% for room in rooms %}
+        {% for room in rooms[:10]: %}
           <li>{{room.title}}</li>
         {% endfor %}
       </ul>
