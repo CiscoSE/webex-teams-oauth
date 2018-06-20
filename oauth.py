@@ -35,15 +35,18 @@ app.secret_key = os.urandom(24)
 
 @app.route("/")
 def login():
+
     """Step 1: User Authorization.
 
     Redirect the user/resource owner to the OAuth provider (i.e. Webex Teams)
     using a URL with a few key OAuth parameters.
     """
+    
     teams = OAuth2Session(CLIENT_ID, scope=SCOPE, redirect_uri=REDIRECT_URI)
     authorization_url, state = teams.authorization_url(AUTHORIZATION_BASE_URL)
 
     # State is used to prevent CSRF, keep this for later.
+    
     session['oauth_state'] = state
     return redirect(authorization_url)
 
@@ -52,7 +55,9 @@ def login():
 
 @app.route("/callback", methods=["GET"])
 def callback():
-    """ Step 3: Retrieving an access token.
+
+    """
+    Step 3: Retrieving an access token.
 
     The user has been redirected back from the provider to your registered
     callback URL. With this redirection comes an authorization code included
@@ -62,42 +67,24 @@ def callback():
     auth_code = OAuth2Session(CLIENT_ID, state=session['oauth_state'], redirect_uri=REDIRECT_URI)
     token = auth_code.fetch_token(TOKEN_URL, client_secret=CLIENT_SECRET,
                                authorization_response=request.url)
-
-    # At this point you can fetch protected resources but lets save
-    # the token and show how this is done from a persisted token
     
-    session['oauth_token'] = token
+    """
+    At this point you can fetch protected resources but lets save
+    the token and show how this is done from a persisted token
+    """
 
+    session['oauth_token'] = token
     return redirect(url_for('.rooms'))
 
 @app.route("/rooms", methods=["GET"])
 def rooms():
+
+    # Use returned token to make Teams API for list of spaces
+
     teams_token = session['oauth_token']
     api = CiscoSparkAPI(access_token=teams_token['access_token'])
     rooms = api.rooms.list(sortBy='lastactivity')
-    
-
     return render_template('rooms.html', rooms=rooms)
-
-
-#@app.route("/rooms", methods=["GET"])
-#def rooms():
-    """Fetching a protected resource using an OAuth 2 token.
-    """
-#    rooms = OAuth2Session(CLIENT_ID, token=session['oauth_token'])
-#    return jsonify(rooms.get('https://api.ciscospark.com/v1/rooms?sortBy=lastactivity').json())
-
-
-@app.route("/me", methods=["GET"])
-def me():
-    spark_token = session['oauth_token']
-    api = CiscoSparkAPI(access_token=spark_token['access_token'])
-    try:
-        people = api.people.me()
-        print(people)
-    except SparkApiError as e:
-        print(e)
-    return people.displayName
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
