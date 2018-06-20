@@ -20,15 +20,18 @@ or implied.
 
 from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, session, url_for, render_template
-from flask_sslify import SSLify
-from flask.json import jsonify
 from ciscosparkapi import CiscoSparkAPI
 from _config import *
-import json
 import os
 
+"""
+requests_oauthlib requires secure transport.
+Insecure transport is enabled here for this test environment.
+Do not use insecure transport in production
+"""
+
 os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-os.environ['DEBUG'] = '1'
+# os.environ['DEBUG'] = '1'
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
