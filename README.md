@@ -1,4 +1,4 @@
-# Webex Teams integration using OAuthlib authentication
+# Webex Teams integration using Requests_OAuthlib
 A simple python Flask application that uses the Webex Teams OAuth 2 authentication flow to log in a user and return the last 10 active spaces the user is in.
 
 ## How to setup the application
