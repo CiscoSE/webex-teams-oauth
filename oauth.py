@@ -20,7 +20,7 @@ or implied.
 
 from requests_oauthlib import OAuth2Session
 from flask import Flask, request, redirect, session, url_for, render_template
-from ciscosparkapi import CiscoSparkAPI
+from webexteamssdk import WebexTeamsAPI
 from _config import *
 import os
 
@@ -85,7 +85,7 @@ def rooms():
     # Use returned token to make Teams API for list of spaces
 
     teams_token = session['oauth_token']
-    api = CiscoSparkAPI(access_token=teams_token['access_token'])
+    api = WebexTeamskAPI(access_token=teams_token['access_token'])
     rooms = api.rooms.list(sortBy='lastactivity')
     return render_template('rooms.html', rooms=rooms)
 
